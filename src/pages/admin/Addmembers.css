@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .addmembers{
+    width: 100%;
+    height: 100vh;
+  }
+
+  .mapping_wrap{
+    display: flex;
+    justify-content: center;
+  }
+.mappingicon1{
+    margin-top: 28px;
+    width: 88px;
+    height: 107.947px;
+}
+.members{
+    position: relative;
+    height: 456px;
+    width: 831px;
+    margin-top: 72.08px;
+}
+.members_wrap{
+    display: flex;
+    justify-content: center;
+}
+.contents1{
+    width: 384px;
+    height: 198px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.logout{
+width: 99px;
+height: 40px;
+margin-left: 738px;
+}
+.logout_wrap{
+    width: 831px;   
+}
+.logout_ultrawrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.notification{
+    width: 378px;
+    height: 150px;
+    background: #FEFAFF;
+    border-radius: 20px;
+    box-shadow: -1px 3px 6px 0px rgba(0, 60, 115, 0.10);
+}
+.notifytext{
+    padding-left: 22px;
+    padding-top: 23px;
+    color: var(--Body-Grey, #696A78);
+font-family: 'Roboto', sans-serif;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: 24px; /* 150% */
+letter-spacing: 0.5px;
+}
+
+
+
+
+
+
+
+/* table {
+    border-collapse: collapse;
+    width: 100%;
+}
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: center;
+}
+th {
+    background-color: #ccc;
+} */

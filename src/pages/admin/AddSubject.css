@@ -1,0 +1,18 @@
+.subjectbox{
+    width: 400px;
+    height: 458px;
+    border-radius: 10px;
+    background: #FEFAFF;
+    box-shadow: -1px 3px 6px 0px rgba(0, 60, 115, 0.10);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.subjects2{
+    width: 449px;
+  height: 60px;
+  border-radius: 10px;
+  border: 0.7px solid #D0CCD3;
+  background: #FEFAFF;
+  margin-top: 20px;
+  }

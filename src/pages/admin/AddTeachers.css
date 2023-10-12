@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+  }
+  /* .addteacher{
+    width: 100%;
+    height: 100vh;
+  } */
+  .arrow{
+   margin-top: 10px;
+   margin-left: 12px;
+    width: 18px;
+    height: 18px;
+  }
+  .navigation{
+    width: 156px;
+    height: 40px;
+    display: flex;
+    margin-left: 156px;
+    margin-top: 16px;
+  }
+  .HomeTeachers{
+    margin-top: 10px;
+    padding-left: 8px;
+    padding-bottom: 10px;
+    color: var(--Mini-Title, #3E3E3E);
+text-align: center;
+font-family: 'Roboto', sans-serif;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 20px; 
+letter-spacing: 0.1px;
+  }
+  .noteachers{
+    color: var(--Mini-Title, #3E3E3E);
+text-align: center;
+
+/* M3/body/medium */
+font-family: 'Roboto', sans-serif;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+letter-spacing: 0.25px;
+margin-top: 161px;
+  }
+  .line{
+    width: 100%;
+height: 0.7px;
+background: #D0CCD3;
+margin-top: 15px;
+  }
+.avatar1{
+  width: 108px;
+  height: 108px;
+  margin-top: 40px;
+}
+.secondbody{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.plus{
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  margin-left: 10px;
+}
+.teacherslist{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 20px;
+}
+.teachers2{
+  width: 449px;
+height: 100px;
+border-radius: 10px;
+border: 0.7px solid #D0CCD3;
+background: #FEFAFF;
+margin-top: 20px;
+}
+.delete1{
+  width: 35px;
+  height: 35px;
+ margin-right: 10px;
+
+}
+.deletebutton1{
+border: none;
+}
+.editbutton1{
+  border: none;
+}
+.edit1{
+  width: 35px;
+  height: 35px;
+  /* margin-right: 10px;
+  margin-top: 10px; */
+}
+.action1{
+position: absolute;
+right: 10px;
+top: 10px;
+}
+.name1{
+  color: var(--Body-Grey, #696A78);
+
+/* M3/label/small */
+font-family: 'Roboto', sans-serif;
+font-size: 11px;
+font-style: normal;
+font-weight: 500;
+line-height: 16px; /* 145.455% */
+letter-spacing: 0.5px;
+margin-top: 10px;
+margin-left: 10px;
+}
+/* .details1{
+  display: ;
+} */
+.firstrow1{
+  display: flex;
+  position: relative;
+  /* align-items: flex-start; */
+}
+.teachername{
+  color: var(--Primary-Black, #121329);
+  white-space: nowrap;
+  /* M3/body/large */
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 150% */
+  letter-spacing: 0.5px;
+  /* background-color: yellow; */
+  margin-left: 10px;
+  margin-top: 0px;
+}
+.allnames1{
+  display: flex;
+}
+.teacherposition{
+  color: var(--m-3-sys-light-secondary, #625B71);
+  white-space: nowrap;
+  /* M3/body/large */
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  margin-left: 10px;
+}
+.username-password{
+  display: flex;
+
+}
+
+.username{
+  color: var(--Mini-Title, #3E3E3E);
+text-align: center;
+padding: 5px 14px;
+/* M3/label/medium */
+font-family: 'Roboto', sans-serif;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 16px; /* 133.333% */
+letter-spacing: 0.5px;
+margin-top: 13px;
+margin-left: 10px;
+border-radius: 5px;
+background-color: rgba(232, 222, 248, 1);
+/* width: 220px; */
+}
+.password{
+  color: var(--Mini-Title, #3E3E3E);
+text-align: center;
+padding: 5px 14px;
+/* M3/label/medium */
+font-family: 'Roboto', sans-serif;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 16px; /* 133.333% */
+letter-spacing: 0.5px;
+margin-top: 13px;
+margin-left: 10px;
+border-radius: 5px;
+background-color: rgba(231, 255, 216, 1);
+}
+.addteacherbox{
+  width: 400px;
+height: 690px;
+border-radius: 10px;
+background: #FEFAFF;
+box-shadow: -1px 3px 6px 0px rgba(0, 60, 115, 0.10);
+display: flex;
+flex-direction: column;
+align-items: center;
+
+}
+.mapping1{
+  width: 88px;
+  height: 107.947px;
+ margin-top: 34px;
+
+}
+.addingteacher{
+  color: var(--Title-black, #222022);
+text-align: center;
+
+/* M3/title/large */
+font-family: 'Roboto', sans-serif;
+font-size: 22px;
+font-style: normal;
+font-weight: 400;
+line-height: 28px; /* 127.273% */
+margin-top: 30px;
+}
+.localtext{
+  color: var(--Mini-Title, #3E3E3E);
+text-align: center;
+
+/* M3/body/medium */
+font-family: 'Roboto', sans-serif;
+font-size: 14px;
+font-style: normal;
+font-weight: 400;
+line-height: 20px; /* 142.857% */
+letter-spacing: 0.25px;
+margin-top: 8px;
+}
