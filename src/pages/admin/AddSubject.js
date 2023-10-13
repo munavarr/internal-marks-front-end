@@ -12,6 +12,9 @@ import Modal from '@mui/material/Modal';
 import { styled } from '@mui/system'; 
 import TextField from '@mui/material/TextField';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
+import { useDispatch, useSelector } from "react-redux";
+import { addSubject, deleteSubject, getAllSubjects, updateSubject } from '../../features/adminSlice';
+import { useEffect } from "react";
 
 
 const StyledModal = styled(Modal)`
@@ -24,23 +27,39 @@ const AddSubject = () => {
 
 
 const [thesubject,setthesubject] = useState()
+const [deletesubjectname,setdeletesubjectname] = useState()
+const [updateid,setupdateid] = useState()
 
+const dispatch = useDispatch();
 
+useEffect(() => {
+  dispatch(getAllSubjects());
+}, [ dispatch ]);
 
+const  allSubjects  = useSelector(
+  (state) => state.admin.allSubjects);
+
+  const SubjectDelete = (deleteData) => {
+    if (deleteData) {
+      dispatch(deleteSubject(deleteData));
+    }
+    setOpen1(false);
+  };
+
+  const subjectdata = {
+    name : thesubject,
+  }
 
 const submitSubject = () => {
-  // dispatch(Login(logindata));
+  dispatch(addSubject(subjectdata));
+  console.log(subjectdata)
+  setOpen(false);
 };
 
 const editSubject = () => {
-  // dispatch(Login(logindata));
+  dispatch(updateSubject({subjectdata,updateid}));
+  setOpen2(false);
 };
-
-const subjectdata = {
-  
-  Subject : thesubject,
-
-}
 
 
   
@@ -49,6 +68,7 @@ const subjectdata = {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const [deleteData, setdeleteData] = useState();
 
   // add
   const handleOpen = () => {
@@ -59,23 +79,28 @@ const subjectdata = {
     setOpen(false);
   };
 // edit 
-  const handleOpen2 = () => {
+  const handleOpen2 = (updateid,subject) => {
     setOpen2(true);
+    setupdateid(updateid);
+    setthesubject(subject);
   };
 
   const handleClose2 = () => {
     setOpen2(false);
   };
 //delete
-  const handleOpen1 = () => {
+  const handleOpen1 = (deleteid,subjectname) => {
     setOpen1(true);
+    console.log(deleteid)
+    setdeleteData(deleteid && deleteid)
+    setdeletesubjectname(subjectname)
   };
 
   const handleClose1 = () => {
     setOpen1(false);
   };
 
-  const data ="a"
+  
   return (
     <div className="addTeacher">
       <div className="navigation">
@@ -111,29 +136,30 @@ const subjectdata = {
           Add subject
         </Button>
       </div>
-    {!data ?  <p className='noteachers'>Add subject to assign it to teachers</p> :
+    {!allSubjects ?  <p className='noteachers'>Add subject to assign it to teachers</p> :
        <div className="teacherslist">
+           {allSubjects?.map((subject)=>
      <div className="subjects2">
     <div className="firstrow1">
       <div className="details1">
     <p className="name1">subject</p>
     <div className="allnames1">
-    <p className="teachername">Computing Master</p>
+    <p className="teachername">{subject.name}</p>
     
     </div>
     </div>
     <div className="action1">
-      <button className='deletebutton1' onClick={handleOpen1}>
+      <button className='deletebutton1' onClick={()=>handleOpen1(subject.id && subject.id,subject.name)}>
       <img className="delete1" src={deleteicon} />
       </button>
-      <button className='editbutton1' onClick={handleOpen2}>
+      <button className='editbutton1' onClick={()=>handleOpen2(subject.id,subject.name)}>
       <img className="edit1" src={edit1} />
       </button>
       </div>
       </div>
-  </div>
+  </div> ) }
 
-  <div className="teachers2">
+  {/* <div className="teachers2">
     <div className="firstrow1">
       <div className="details1">
     <p className="name1">name</p>
@@ -155,7 +181,7 @@ const subjectdata = {
       </button>
       </div>
       </div>
-  </div>
+  </div> */}
 
  
 </div> }
@@ -218,7 +244,7 @@ const subjectdata = {
  <img className="mapping1" src={mapping} />
 <p className='addingteacher'>Edit subject</p>
 <p className='localtext'>Edit subject name and click ‘Update’.</p>
-<TextField style={{ width: '330px', marginTop: '46px',borderRadius: '4px 4px 0px 0px' }} label="Subject Name"  InputLabelProps={{
+<TextField style={{ width: '330px', marginTop: '46px',borderRadius: '4px 4px 0px 0px' }} label={thesubject}  InputLabelProps={{
    style: {
      color: 'var(--m-3-sys-light-on-surface-variant, #49454F)',
      fontFamily: 'Roboto',
@@ -264,7 +290,7 @@ const subjectdata = {
       >
         <div className="modal-content">
          <div className='notification'>
-         <p className='notifytext'>Are you sure you want to delete this subject ‘Cloud Computing’?</p>
+         <p className='notifytext'>Are you sure you want to delete this subject ‘{deletesubjectname}’?</p>
          <Button style={{borderRadius: '100px',border: '1px solid var(--m-3-sys-light-outline, #79747E)'
          ,color: 'var(--m-3-sys-light-primary, #6750A4)',
          textAlign: 'center',fontSize: '14px',fontStyle: 'normal',fontWeight: '700',lineHeight: '20px',
@@ -275,7 +301,7 @@ const subjectdata = {
          marginLeft:'10px',marginTop:'22px',width:'93px',height:'40px',
          color: 'var(--m-3-sys-light-on-primary, #FFF)', textAlign: 'center',
          fontSize: '14px',fontStyle: 'normal',fontWeight: '500',lineHeight: '20px', 
-         letterSpacing: '0.1px'}} >Delete</Button>
+         letterSpacing: '0.1px'}} onClick={()=>SubjectDelete(deleteData && deleteData)} >Delete</Button>
          </div>
         </div>
       </StyledModal>

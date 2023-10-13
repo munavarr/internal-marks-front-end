@@ -11,6 +11,10 @@ import Button from "@mui/material/Button";
 import Modal from '@mui/material/Modal';
 import { styled } from '@mui/system'; 
 import TextField from '@mui/material/TextField';
+import { useDispatch, useSelector } from "react-redux";
+import { addStudent, deleteStudent, getAllStudentsList, updateStudent } from '../../features/adminSlice';
+import { useEffect } from "react";
+
 
 
 
@@ -25,24 +29,44 @@ const AddStudent = () => {
 const [fullname,setfullname] = useState()
 const [rollno,setrollno] = useState()
 const [regno,setregno] = useState()
+const [deleteusername,setdeleteusername] = useState()
+const [updateid,setupdateid] = useState()
+
+const dispatch = useDispatch();
+
+useEffect(() => {
+  dispatch(getAllStudentsList());
+}, [ dispatch ]);
+
+const  AllStudents  = useSelector(
+  (state) => state.admin.AllStudents);
 
 
+const StudentDelete = (deleteData) => {
+  if (deleteData) {
+    dispatch(deleteStudent(deleteData));
+    console.log(deleteData)
+  }
+  setOpen1(false);
+};
 
+
+const studentdata = {
+  name : fullname,
+  register_number : regno,
+  roll_number : rollno
+}
 
 const submitStudent = () => {
-  // dispatch(Login(logindata));
+  dispatch(addStudent(studentdata));
+  console.log(studentdata)
+  setOpen(false);
 };
 
 const editStudent = () => {
-  // dispatch(Login(logindata));
+  dispatch(updateStudent({studentdata,updateid}));
+  setOpen2(false);
 };
-
-const studentdata = {
-  Fullname : fullname,
-  rollno : rollno,
-  regno : regno
-
-}
 
 
   
@@ -51,6 +75,7 @@ const studentdata = {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const [deleteData, setdeleteData] = useState();
 
   // add
   const handleOpen = () => {
@@ -61,16 +86,24 @@ const studentdata = {
     setOpen(false);
   };
 // edit 
-  const handleOpen2 = () => {
+  const handleOpen2 = (updateid,fullname,rollno,regno) => {
     setOpen2(true);
+    setupdateid(updateid);
+    setfullname(fullname);
+    setrollno(rollno);
+    setregno(regno);
   };
 
   const handleClose2 = () => {
     setOpen2(false);
   };
 //delete
-  const handleOpen1 = () => {
+  const handleOpen1 = (deleteid,fullname) => {
     setOpen1(true);
+    console.log(deleteid)
+    setdeleteData(deleteid && deleteid)
+    setdeleteusername(fullname)
+    
   };
 
   const handleClose1 = () => {
@@ -115,28 +148,29 @@ const studentdata = {
       </div>
     {!data ?  <p className='noteachers'>No students added. Click '+ Add Students' to start.</p> :
        <div className="teacherslist">
+         {AllStudents?.map((student)=>
      <div className="teachers2">
     <div className="firstrow1">
       <div className="details1">
     <p className="name1">name</p>
     <div className="allnames1">
-    <p className="teachername">Shylaja </p>
+    <p className="teachername">{student.name} </p>
     
     </div>
-    <div className="username-password"><p className="rollreg">Roll No: hahah</p><p className="rollreg">Reg no: vvvvv</p></div>
+    <div className="username-password"><p className="rollreg">Roll No:{student.roll_number}</p><p className="rollreg">Reg no: {student.register_number}</p></div>
     </div>
     <div className="action1">
-      <button className='deletebutton1' onClick={handleOpen1}>
+      <button className='deletebutton1' onClick={()=> handleOpen1(student.id && student.id,student.name)}>
       <img className="delete1" src={deleteicon} />
       </button>
-      <button className='editbutton1' onClick={handleOpen2}>
+      <button className='editbutton1' onClick={()=>handleOpen2(student.id,student.name,student.roll_number,student.register_number)}>
       <img className="edit1" src={edit1} />
       </button>
       </div>
       </div>
-  </div>
+  </div> ) }
 
-  <div className="teachers2">
+  {/* <div className="teachers2">
     <div className="firstrow1">
       <div className="details1">
     <p className="name1">name</p>
@@ -157,7 +191,7 @@ const studentdata = {
       </button>
       </div>
       </div>
-  </div>
+  </div> */}
 
  
 </div> }
@@ -241,7 +275,7 @@ const studentdata = {
  <img className="mapping1" src={mapping} />
 <p className='addingteacher'>Edit student info</p>
 <p className='localtext'>Edit in student details and click ‘Update’.</p>
-<TextField style={{ width: '330px', marginTop: '46px',borderRadius: '4px 4px 0px 0px' }} label="Full Name"  InputLabelProps={{
+<TextField style={{ width: '330px', marginTop: '46px',borderRadius: '4px 4px 0px 0px' }} label={fullname} InputLabelProps={{
    style: {
      color: 'var(--m-3-sys-light-on-surface-variant, #49454F)',
      fontFamily: 'Roboto',
@@ -254,7 +288,7 @@ const studentdata = {
  }} type='text' onChange={(e) => setfullname(e.target.value)} />
 
 
- <TextField style={{ width: '330px', marginTop: '25px' }} label="Roll no."  InputLabelProps={{
+ <TextField style={{ width: '330px', marginTop: '25px' }} label={rollno}  InputLabelProps={{
    style: {
      color: 'var(--m-3-sys-light-on-surface-variant, #49454F)',
      fontFamily: 'Roboto',
@@ -265,7 +299,7 @@ const studentdata = {
      letterSpacing: '0.5px',
    }
  }} type='number'  onChange={(e) => setrollno(e.target.value)} />
-  <TextField style={{ width: '330px', marginTop: '25px' }} label="Reg no."  InputLabelProps={{
+  <TextField style={{ width: '330px', marginTop: '25px' }} label={regno}  InputLabelProps={{
    style: {
      color: 'var(--m-3-sys-light-on-surface-variant, #49454F)',
      fontFamily: 'Roboto',
@@ -309,7 +343,7 @@ const studentdata = {
       >
         <div className="modal-content">
          <div className='notification'>
-         <p className='notifytext'>Are you sure you want to delete this student ‘Alaska’?</p>
+         <p className='notifytext'>Are you sure you want to delete this student ‘{deleteusername}’?</p>
          <Button style={{borderRadius: '100px',border: '1px solid var(--m-3-sys-light-outline, #79747E)'
          ,color: 'var(--m-3-sys-light-primary, #6750A4)',
          textAlign: 'center',fontSize: '14px',fontStyle: 'normal',fontWeight: '700',lineHeight: '20px',
@@ -320,7 +354,7 @@ const studentdata = {
          marginLeft:'10px',marginTop:'22px',width:'93px',height:'40px',
          color: 'var(--m-3-sys-light-on-primary, #FFF)', textAlign: 'center',
          fontSize: '14px',fontStyle: 'normal',fontWeight: '500',lineHeight: '20px', 
-         letterSpacing: '0.1px'}} >Delete</Button>
+         letterSpacing: '0.1px'}} onClick={()=>StudentDelete(deleteData && deleteData)} >Delete</Button>
          </div>
         </div>
       </StyledModal>

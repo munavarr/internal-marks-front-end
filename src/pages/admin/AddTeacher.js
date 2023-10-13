@@ -29,6 +29,7 @@ const [username,setusername] = useState("")
 const [password,setpassword] = useState("")
 const [Fullname,setFullname] = useState("")
 const [subject,setsubject] = useState()
+const [subjectname,setsubjectname] = useState()
 const [deleteusername,setdeleteusername] = useState()
 const [updateid,setupdateid] = useState()
 
@@ -71,6 +72,7 @@ const teacherdata = {
 
 const editTeacher = () => {
   dispatch(updateTeacher({teacherdata,updateid}));
+  console.log(teacherdata)
   setOpen2(false);
 };
 
@@ -95,9 +97,13 @@ const submitTeacher = () => {
     setOpen(false);
   };
 // edit 
-  const handleOpen2 = (updateid) => {
+  const handleOpen2 = (updateid,fullname,username,password,subjectname) => {
     setOpen2(true);
-    setupdateid(updateid)
+    setupdateid(updateid);
+    setFullname(fullname);
+    setusername(username);
+    setpassword(password);
+    setsubjectname(subjectname);
   };
 
   const handleClose2 = () => {
@@ -160,16 +166,16 @@ const submitTeacher = () => {
    <p className="name1">name</p>
    <div className="allnames1">
    <p className="teachername">{teacher.full_name} /</p>
-   <p className="teacherposition">Computer Architecturer</p>
+   <p className="teacherposition">{teacher.subject_name}</p>
    </div>
    <div className="username-password"><p className="username">username:{teacher.username}</p>
    <p className="password">password:{teacher.copy_pass}</p></div>
    </div>
    <div className="action1">
-     <button className='deletebutton1' onClick={()=> handleOpen1(teacher.id && teacher.id,teacher.username)}>
+     <button className='deletebutton1' onClick={()=> handleOpen1(teacher.id && teacher.id,teacher.full_name)}>
      <img className="delete1" src={deleteicon} />
      </button>
-     <button className='editbutton1' onClick={()=>handleOpen2(teacher.id)}>
+     <button className='editbutton1' onClick={()=>handleOpen2(teacher.id,teacher.full_name,teacher.username,teacher.copy_pass,teacher.subject_name)}>
      <img className="edit1" src={edit1} />
      </button>
      </div>
@@ -296,7 +302,7 @@ const submitTeacher = () => {
  <img className="mapping1" src={mapping} />
 <p className='addingteacher'>Edit teacher info</p>
 <p className='localtext'>Set a username and password for the teacher login</p>
-<TextField style={{ width: '330px', marginTop: '46px',borderRadius: '4px 4px 0px 0px' }} label="Fullname"  InputLabelProps={{
+<TextField style={{ width: '330px', marginTop: '46px',borderRadius: '4px 4px 0px 0px' }} label={Fullname}  InputLabelProps={{
    style: {
      color: 'var(--m-3-sys-light-on-surface-variant, #49454F)',
      fontFamily: 'Roboto',
@@ -322,7 +328,7 @@ const submitTeacher = () => {
        ) }
       </Select>
     </FormControl>
- <TextField style={{ width: '330px', marginTop: '25px' }} label="Username"  InputLabelProps={{
+ <TextField style={{ width: '330px', marginTop: '25px' }} label={username}  InputLabelProps={{
    style: {
      color: 'var(--m-3-sys-light-on-surface-variant, #49454F)',
      fontFamily: 'Roboto',
@@ -333,7 +339,7 @@ const submitTeacher = () => {
      letterSpacing: '0.5px',
    }
  }} type='text'  onChange={(e) => setusername(e.target.value)} />
-  <TextField style={{ width: '330px', marginTop: '25px' }} label="Password"  InputLabelProps={{
+  <TextField style={{ width: '330px', marginTop: '25px' }} label={password}  InputLabelProps={{
    style: {
      color: 'var(--m-3-sys-light-on-surface-variant, #49454F)',
      fontFamily: 'Roboto',

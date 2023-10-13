@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 
 const Teacher = () => {
 
-  const thedata = [{rolno : 1,regno:"ddd",name :'ssrr'},{rolno : 2,regno:"ee",name :'ssrr'},{rolno : 3,regno:"ttt",name :'ssrr'}]
+  const thedata = [{rolno : 1,regno:"ddd",name :'ssr'},{rolno : 2,regno:"ee",name :'ssrr'},{rolno : 3,regno:"ttt",name :'ssrr'}]
 
   const navigate = useNavigate();
 

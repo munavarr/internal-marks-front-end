@@ -4,12 +4,24 @@ import { AxiosApi } from "./axiosApi";
 const initialState = {
   token: "vv",
   allSubjects :[],
-  allTeachers : []
+  allTeachers : [],
+  AllStudents : [],
 };
 
 
 export const addTeacher = createAsyncThunk("addTeacher", async (teacherdata) => {
   const res = await AxiosApi.post("/store/registration/", teacherdata);
+  return await res.data;
+});
+
+export const addStudent = createAsyncThunk("addStudent", async (studentdata) => {
+  const res = await AxiosApi.post("/store/student/registration/", studentdata);
+  return await res.data;
+});
+
+export const addSubject = createAsyncThunk("addSubject", async (subjectdata) => {
+  console.log(subjectdata)
+  const res = await AxiosApi.post("/store/subject/", subjectdata);
   return await res.data;
 });
 
@@ -23,13 +35,39 @@ export const getAllTeachersList = createAsyncThunk("getAllTeachersList", async (
   return await res.data;
 });
 
+export const getAllStudentsList = createAsyncThunk("getAllStudentsList", async () => {
+  const res = await AxiosApi.get("/store/student/registration/");
+  console.log(res.data)
+  return await res.data;
+});
+
  export const deleteTeacher = createAsyncThunk("deleteTeacher", async (deleteData) => {
   const res = deleteData && await AxiosApi.delete(`/store/registration/${deleteData}/`) 
   return await res.data;
 });
 
+export const deleteStudent = createAsyncThunk("deleteStudent", async (deleteData) => {
+  const res = deleteData && await AxiosApi.delete(`/store/student/registration/${deleteData}/`) 
+  return await res.data;
+});
+
+export const deleteSubject = createAsyncThunk("deleteSubject", async (deleteData) => {
+  const res = deleteData && await AxiosApi.delete(`/store/subject/${deleteData}/`) 
+  return await res.data;
+});
+
 export const updateTeacher = createAsyncThunk("updateTeacher", async ({teacherdata,updateid}) => {
   const res = await AxiosApi.put(`/store/registration/${updateid}/`,teacherdata) 
+  return await res.data;
+});
+
+export const updateStudent = createAsyncThunk("updateStudent", async ({studentdata,updateid}) => {
+  const res = await AxiosApi.put(`/store/student/registration/${updateid}/`,studentdata) 
+  return await res.data;
+});
+
+export const updateSubject = createAsyncThunk("updateSubject", async ({subjectdata,updateid}) => {
+  const res = await AxiosApi.put(`/store/subject/${updateid}/`,subjectdata) 
   return await res.data;
 });
 
@@ -79,6 +117,18 @@ const adminSlice = createSlice({
       state.loading = false;
     },
 
+  // getAllStudentsList
+  [getAllStudentsList.pending]: (state, action) => {
+    state.loading = true;
+  },
+  [getAllStudentsList.fulfilled]: (state, action) => {
+       state.AllStudents = action.payload
+       
+  },
+  [getAllStudentsList.rejected]: (state, action) => {
+    state.loading = false;
+  },
+  
     // signin
   },
 });
