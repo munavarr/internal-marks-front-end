@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Navigate, useNavigate, Link } from "react-router-dom";
 import "../admin/AddSubject.css";
 import arrow from "../../assets/icon.png";
+import alert from "../../assets/alert.png";
 import Subjects from "../../assets/Subjects.png";
 import deleteicon from "../../assets/deleteicon.png";
 import edit1 from "../../assets/edit1.png";
@@ -13,7 +14,7 @@ import { styled } from '@mui/system';
 import TextField from '@mui/material/TextField';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { useDispatch, useSelector } from "react-redux";
-import { addSubject, deleteSubject, getAllSubjects, updateSubject } from '../../features/adminSlice';
+import { addSubject, deleteSubject, getAllSubjects, getAllTeachersList, updateSubject } from '../../features/adminSlice';
 import { useEffect } from "react";
 
 
@@ -34,10 +35,18 @@ const dispatch = useDispatch();
 
 useEffect(() => {
   dispatch(getAllSubjects());
+  dispatch(getAllTeachersList());
 }, [ dispatch ]);
 
-const  allSubjects  = useSelector(
-  (state) => state.admin.allSubjects);
+// const  allSubjects  = useSelector(
+//   (state) => state.admin.allSubjects);
+
+  const { allSubjects,AllTeachers } = useSelector(
+    (state) => ({
+      allSubjects: state.admin.allSubjects,
+      AllTeachers: state.admin.allTeachers
+    })
+  );
 
   const SubjectDelete = (deleteData) => {
     if (deleteData) {
@@ -68,6 +77,7 @@ const editSubject = () => {
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
   const [open2, setOpen2] = useState(false);
+  const [open3, setOpen3] = useState(false);
   const [deleteData, setdeleteData] = useState();
 
   // add
@@ -89,16 +99,37 @@ const editSubject = () => {
     setOpen2(false);
   };
 //delete
+
+
+
   const handleOpen1 = (deleteid,subjectname) => {
-    setOpen1(true);
+
+    const hasSubject = AllTeachers.some(item => item.subject === deleteid);
+    console.log(hasSubject)
+
     console.log(deleteid)
     setdeleteData(deleteid && deleteid)
     setdeletesubjectname(subjectname)
+    hasSubject ?
+    setOpen3(true)
+   :
+    setOpen1(true);
+    
+    
+   
   };
+
+
+
 
   const handleClose1 = () => {
     setOpen1(false);
   };
+
+  const handleClose3 = () => {
+    setOpen3(false);
+  };
+
 
   
   return (
@@ -302,6 +333,26 @@ const editSubject = () => {
          color: 'var(--m-3-sys-light-on-primary, #FFF)', textAlign: 'center',
          fontSize: '14px',fontStyle: 'normal',fontWeight: '500',lineHeight: '20px', 
          letterSpacing: '0.1px'}} onClick={()=>SubjectDelete(deleteData && deleteData)} >Delete</Button>
+         </div>
+        </div>
+      </StyledModal>
+
+      <StyledModal
+        open={open3}
+        onClose={handleClose3}
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+      >
+        <div className="modal-content">
+         <div className='notification1'>
+         <img className="alert" src={alert} />
+         <p className='notifytext'>You can’t delete this subject. Because the subject is associated with a teacher.</p>
+         <Button style={{borderRadius: '100px',border: '1px solid var(--m-3-sys-light-outline, #79747E)'
+         ,color: 'var(--m-3-sys-light-primary, #6750A4)',
+         textAlign: 'center',fontSize: '14px',fontStyle: 'normal',fontWeight: '700',lineHeight: '20px',
+         letterSpacing: '0.1px',textTransform: 'capitalize',marginTop:'22px',width:'93px',
+         height:'40px'}} onClick={handleClose3}>Cancel</Button>
+     
          </div>
         </div>
       </StyledModal>
