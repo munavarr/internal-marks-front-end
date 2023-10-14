@@ -178,7 +178,8 @@ console.log(AllExams)
       <div className='avatarflex'>  <img className="avatar1" src={avatar1} /> </div>
         <p className='teachername1'>Shylaja KC</p>
         <p className='teachersubject1'>Computer Architecture</p>
-        <p className='studentsaddedtext1'>No students added yet!</p>
+       { !AllStudents ? <p className='studentsaddedtext1'>No students added yet!</p> :
+      
         <div className='dropdownbox'>
         <FormControl style={{ width: '330px', marginTop: '25px',borderRadius: '4px 4px 0px 0px' }} >
       <InputLabel id="dropdown-label" >Select Exam</InputLabel>
@@ -195,13 +196,15 @@ console.log(AllExams)
        ) }
       </Select>
     </FormControl>
-    </div>
+    </div> }
+    {exam ? 
+    <div>
         <table>
     <tr>
-        <td rowspan="4">no</td>
-        <td rowspan="4">regno</td>
-        <td rowspan="4">name</td>
-        <td colspan="10">Question Number</td>
+        <td className='inputs_container' rowspan="4"><p className='tablefields'>Roll no</p></td>
+        <td className='inputs_container' rowspan="4"><p className='tablefields'>Reg no</p></td>
+        <td className='inputs_container' rowspan="4"><p className='tablefields'>Name</p></td>
+        <td colspan="10"><p className='tablefields'>Question number</p></td>
     </tr>
     <tr>
         <td >5</td>
@@ -217,7 +220,7 @@ console.log(AllExams)
         
     </tr>
     <tr>
-        <td colspan="10">CO Value</td>
+        <td colspan="10"><p className='tablefields'>CO Value</p></td>
     </tr>
     <tr>
         <td>7</td>
@@ -231,27 +234,9 @@ console.log(AllExams)
         <td>15</td>
         <td>16</td>
     </tr>
-    { 
-    AllStudents ?
-//      AllStudents.map((tt)=>
-//      <tr key={tt.id}>
-//      <td>{tt.roll_number}</td>
-//      <td>{tt.register_number}</td>
-//      <td>{tt.name}</td>
-//      <td className='inputs_container'><input onChange={(e) => handleMarkChange(e.target.value,0)} type="number"  className='inputs'/></td>
-//      <td className='inputs_container'><input onChange={(e) => handleMarkChange(e.target.value,1)} type="number"  className='inputs'/></td>
-//      <td className='inputs_container'><input onChange={(e) => handleMarkChange(e.target.value,2)} type="number"  className='inputs'/></td>
-//      <td className='inputs_container'><input onChange={(e) => handleMarkChange(e.target.value,3)} type="number"  className='inputs'/></td>
-//      <td className='inputs_container'><input onChange={(e) => handleMarkChange(e.target.value,4)} type="number"  className='inputs'/></td>
-//      <td className='inputs_container'><input onChange={(e) => handleMarkChange(e.target.value,5)} type="number"  className='inputs'/></td>
-//      <td className='inputs_container'><input onChange={(e) => handleMarkChange(e.target.value,6)} type="number"  className='inputs'/></td>
-//      <td className='inputs_container'><input onChange={(e) => handleMarkChange(e.target.value,7)} type="number"  className='inputs'/></td>
-//      <td className='inputs_container'><input onChange={(e) => handleMarkChange(e.target.value,8)} type="number"  className='inputs'/></td>
-//      <td className='inputs_container'><input onChange={(e) => handleMarkChange(e.target.value,9)} type="number"  className='inputs'/></td>
+  
 
-//  </tr>
-//      )
-
+{
 AllStudents.map((student, studentIndex) => (
   <tr key={student.id}>
     <td>{student.roll_number}</td>
@@ -269,12 +254,34 @@ AllStudents.map((student, studentIndex) => (
   </tr>
 ))
 
-     : "there is no students"} 
+    } 
 </table>
 
-<button onClick={addmark}>addmark</button>
 
+<Button   style={{
+            color: "var(--m-3-sys-light-on-primary, #FFF)",
+            textAlign: "center",
+            fontFamily: "Roboto",
+            fontSize: "14px",
+            fontStyle: "normal",
+            fontWeight: "500",
+            lineHeight: "20px",
+            letterSpacing: "0.1px",
+            borderRadius: "4px",
+            background: "#278AE6",
+            marginTop: "30px",
+            marginLeft: '760px',
+            paddingRight: "10px",
+            paddingTop: "10px",
+            paddingBottom: "10px",
+            textTransform: "capitalize",
+          }} onClick={addmark} >add</Button>
+</div>
+:
+""
+}
 
+       
 {/* <div class="grid-container">
   <div class="cell" rowspan="4"><input className='in'></input></div>
   <div class="cell" rowspan="4">2</div>
