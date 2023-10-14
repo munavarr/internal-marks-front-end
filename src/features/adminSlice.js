@@ -26,6 +26,11 @@ export const addSubject = createAsyncThunk("addSubject", async (subjectdata) => 
   return await res.data;
 });
 
+export const addMarks = createAsyncThunk("addMarks", async (thedata) => {
+  const res = await AxiosApi.post("/store/mark/", thedata);
+  return await res.data;
+});
+
 export const getAllSubjects = createAsyncThunk("getAllSubjects", async () => {
   const res = await AxiosApi.get("/store/subject/");
   return await res.data;

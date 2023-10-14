@@ -23,6 +23,7 @@ export const Login = createAsyncThunk(
       } else {
         navigate("/Teacher");
       }
+      localStorage.setItem("id", res.data.pk);
       // const tokens = localStorage.getItem("token");
       // const role = localStorage.getItem("role");
       // res.data.role ==="admin"?:;

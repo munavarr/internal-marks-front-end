@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getAllExams, getAllStudentsList } from '../../features/adminSlice';
+import { addMarks, getAllExams, getAllStudentsList } from '../../features/adminSlice';
 
 
 
@@ -20,7 +20,9 @@ const Teacher = () => {
 
 
 const [exam,setexam] = useState()
+console.log(exam)
 // const [mark,setmark] = useState([])
+const teacherid = localStorage.getItem("id");
 
 
 const dispatch = useDispatch();
@@ -111,10 +113,10 @@ const thedata = AllStudents.map((trt, index) => {
   const studentMarks = marks[index];
 
   return {
-    teacher: 6,
-    exam_name:9,
+    teacher: teacherid,
+    exam_name:exam,
     student: trt.id,
-    question_one: studentMarks ? studentMarks[0] : 0,
+    question_one: studentMarks ? studentMarks[0] :  0,
     question_one_co:"kk",
     question_two: studentMarks ? studentMarks[1] : 0,
     question_two_co : "q",
@@ -137,6 +139,10 @@ const thedata = AllStudents.map((trt, index) => {
   };
 });
 
+for (let i = 0; i < thedata.length; i++) {
+  console.log(thedata[i]);
+}
+
 
 console.log(thedata)
 // console.log(thedatas)
@@ -153,7 +159,9 @@ console.log(AllExams)
   };
 
 
- 
+ const addmark =()=>{
+  dispatch(addMarks(thedata));
+ }
 
 
   
@@ -264,7 +272,7 @@ AllStudents.map((student, studentIndex) => (
      : "there is no students"} 
 </table>
 
-
+<button onClick={addmark}>addmark</button>
 
 
 {/* <div class="grid-container">
