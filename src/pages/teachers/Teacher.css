@@ -66,6 +66,11 @@ text-align: center;
 margin-top: 155px;
 }
 
+.dropdownbox{
+    display: flex;
+    justify-content: center;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
@@ -83,7 +88,7 @@ th {
  margin: 0;
  padding: 0;
 white-space: nowrap;
-width: 120px;
+width: 70px;
 }
 .inputs {
     margin:0;

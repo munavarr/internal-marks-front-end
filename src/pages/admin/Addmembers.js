@@ -174,10 +174,6 @@ const navigate = useNavigate();
 
 
 
-
-
-
-
     </div>
   );
 }
