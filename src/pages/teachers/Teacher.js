@@ -18,6 +18,7 @@ import { addMarks, getAllExams, getAllStudentsList } from '../../features/adminS
 
 const Teacher = () => {
 
+ const username = localStorage.getItem("username");
 
 const [exam,setexam] = useState()
 console.log(exam)
@@ -143,13 +144,6 @@ for (let i = 0; i < thedata.length; i++) {
   console.log(thedata[i]);
 }
 
-
-console.log(thedata)
-// console.log(thedatas)
-console.table(marks)
-const lov = [[],[2,3,2]]
-console.log(lov)
-
 console.log(AllExams)
   const navigate = useNavigate();
 
@@ -159,11 +153,71 @@ console.log(AllExams)
   };
 
 
- const addmark =()=>{
+//  const addmark =()=>{
+//   dispatch(addMarks(thedata));
+//   setMarks("")
+//  }
+
+const addmark = () => {
   dispatch(addMarks(thedata));
- }
+  console.table(thedata)
+}
 
-
+const maindata = [
+  {
+    id: 3,
+      teacher: 31,
+      exam_name: 1,
+      student: 17,
+      student_name: "rotsy",
+      question_1: 2,
+      question_one_co: "kk",
+      question_2: 0,
+      question_two_co: "q",
+      question_3: 0,
+      question_three_co: "kk",
+      question_4: 0,
+      question_four_co: "kk",
+      question_5: 0,
+      question_five_co: "kk",
+      question_6: 0,
+      question_six_co: "kk",
+      question_7: 0,
+      question_seven_co: "kk",
+      question_8: 0,
+      question_eight_co: "kk",
+      question_9: 0,
+      question_nine_co: "kk",
+      question_10: 0,
+      question_ten_co: "kk"
+  },
+  {
+      id: 4,
+      teacher: 31,
+      exam_name: 1,
+      student: 18,
+      student_name: "erron",
+      question_1: 3,
+      question_one_co: "kk",
+      question_2: 0,
+      question_two_co: "q",
+      question_3: 0,
+      question_three_co: "kk",
+      question_4: 0,
+      question_four_co: "kk",
+      question_5: 0,
+      question_five_co: "kk",
+      question_6: 5,
+      question_six_co: "kk",
+      question_7: 0,
+      question_seven_co: "kk",
+      question_8: 0,
+      question_eight_co: "kk",
+      question_9: 0,
+      question_nine_co: "kk",
+      question_10: 0,
+      question_ten_co: "kk"
+  },]
   
   return (
     <div className="addTeacher">
@@ -176,11 +230,11 @@ console.log(AllExams)
       <div className="line"></div>
       <div className="nextbody">
       <div className='avatarflex'>  <img className="avatar1" src={avatar1} /> </div>
-        <p className='teachername1'>Shylaja KC</p>
+        <p className='teachername1'>{username}</p>
         <p className='teachersubject1'>Computer Architecture</p>
-       { !AllStudents ? <p className='studentsaddedtext1'>No students added yet!</p> :
-      
-        <div className='dropdownbox'>
+       { !AllStudents[0] ?  <p className='studentsaddedtext1'>No students added yet!</p>  :
+
+         <div className='dropdownbox'>
         <FormControl style={{ width: '330px', marginTop: '25px',borderRadius: '4px 4px 0px 0px' }} >
       <InputLabel id="dropdown-label" >Select Exam</InputLabel>
       <Select
@@ -196,7 +250,7 @@ console.log(AllExams)
        ) }
       </Select>
     </FormControl>
-    </div> }
+    </div>  }
     {exam ? 
     <div>
         <table>
@@ -237,22 +291,66 @@ console.log(AllExams)
   
 
 {
-AllStudents.map((student, studentIndex) => (
+// AllStudents.map((student, studentIndex) => (
+//   <tr key={student.id}>
+//     <td>{student.roll_number}</td>
+//     <td>{student.register_number}</td>
+//     <td>{student.name}</td>
+//     {Array.from({ length: 10 }, (_, markIndex) => (
+//       <td className='inputs_container' key={markIndex}>
+//         <input
+//           type="number"
+//           className='inputs'
+//           onChange={(e) => handleMarkChange(e.target.value, studentIndex, markIndex)}
+//         />
+//       </td>
+//     ))}
+//   </tr>
+// ))
+
+// AllStudents.map((student, studentIndex) => (
+//   <tr key={student.id}>
+//     <td>{student.roll_number}</td>
+//     <td>{student.register_number}</td>
+//     <td>{student.name}</td>
+//     {Array.from({ length: 10 }, (_, markIndex) => (
+//       <td className='inputs_container' key={markIndex}>
+//         <input
+//           type="number"
+//           className='inputs'
+//           placeholder={maindata[studentIndex][`question_${markIndex + 1}`]}
+//           onChange={(e) => handleMarkChange(e.target.value, studentIndex, markIndex)}
+//         />
+//       </td>
+//     ))}
+//   </tr>
+// ))
+
+AllStudents.map((student, studentIndex) => 
   <tr key={student.id}>
     <td>{student.roll_number}</td>
     <td>{student.register_number}</td>
     <td>{student.name}</td>
-    {Array.from({ length: 10 }, (_, markIndex) => (
-      <td className='inputs_container' key={markIndex}>
-        <input
-          type="number"
-          className='inputs'
-          onChange={(e) => handleMarkChange(e.target.value, studentIndex, markIndex)}
-        />
-      </td>
-    ))}
+    {Array.from({ length: 10 }, (_, markIndex) => {
+      const questionKey = `question_${markIndex + 1}`;
+      const placeholderValue = maindata[studentIndex]?.[questionKey] ?? "";
+      return (
+        <td className='inputs_container' key={markIndex}>
+          <input
+            type="number"
+            className='inputs'
+            placeholder={placeholderValue}
+            onChange={(e) => handleMarkChange(e.target.value, studentIndex, markIndex)}
+          />
+        </td>
+      );
+    })}
   </tr>
-))
+)
+
+
+
+
 
     } 
 </table>
@@ -273,6 +371,7 @@ AllStudents.map((student, studentIndex) => (
             marginLeft: '760px',
             paddingRight: "10px",
             paddingTop: "10px",
+            marginBottom:'20px',
             paddingBottom: "10px",
             textTransform: "capitalize",
           }} onClick={addmark} >add</Button>

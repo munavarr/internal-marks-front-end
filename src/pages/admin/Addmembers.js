@@ -59,8 +59,9 @@ const navigate = useNavigate();
       </div>
       <div className='logout_ultrawrap'>
         <div className='logout_wrap'>
-          <Button onClick={handleOpen}>
-            <img className='logout' src={logoutimage} />
+          <Button style={{textTransform:'capitalize',marginLeft:'778px'}}  onClick={handleOpen}>
+            {/* <img className='logout' src={logoutimage} /> */}
+            <p className="teacherlogout">Logout</p>
           </Button>
         </div>
       </div>

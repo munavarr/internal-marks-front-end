@@ -21,6 +21,7 @@ export const Login = createAsyncThunk(
       if (res.data.role === "admin") {
         navigate("/Addmembers");
       } else {
+        localStorage.setItem("username", res.data.username);
         navigate("/Teacher");
       }
       localStorage.setItem("id", res.data.pk);
