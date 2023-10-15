@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { addMarks, getAllExams, getAllStudentsList } from '../../features/adminSlice';
+import { addMarks, getAllExams, getAllMarks, getAllStudentsList } from '../../features/adminSlice';
 
 
 
@@ -218,6 +218,11 @@ const maindata = [
       question_10: 0,
       question_ten_co: "kk"
   },]
+
+  const sendSubjectid = (e)=>{
+    console.log(e.target.value)
+    dispatch(getAllMarks(e.target.value));
+  }
   
   return (
     <div className="addTeacher">
@@ -243,7 +248,11 @@ const maindata = [
         value={exam}
         // onChange={handleChange}
         
-        onChange={(e) => setexam(e.target.value)}
+        // onChange={(e) => setexam(e.target.value)}
+        onChange={(e) => {
+          setexam(e.target.value); 
+          sendSubjectid(e); 
+        }}
       >
         {AllExams.map((subject)=>
         <MenuItem value={subject.id}>{subject.name}</MenuItem>

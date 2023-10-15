@@ -7,6 +7,7 @@ const initialState = {
   allTeachers : [],
   AllStudents : [],
   allExams :[],
+  allMarks :[],
 };
 
 
@@ -49,6 +50,11 @@ export const getAllTeachersList = createAsyncThunk("getAllTeachersList", async (
 export const getAllStudentsList = createAsyncThunk("getAllStudentsList", async () => {
   const res = await AxiosApi.get("/store/student/registration/");
   console.log(res.data)
+  return await res.data;
+});
+
+export const getAllMarks = createAsyncThunk("getAllMarks", async (examid) => {
+  const res = await AxiosApi.get(`/store/mark/?exam_name=${examid}`);
   return await res.data;
 });
 
@@ -149,6 +155,18 @@ const adminSlice = createSlice({
          console.log(state.allExams)
     },
     [getAllExams.rejected]: (state, action) => {
+      state.loading = false;
+    },
+
+     // getallmarks
+     [getAllMarks.pending]: (state, action) => {
+      state.loading = true;
+    },
+    [getAllMarks.fulfilled]: (state, action) => {
+         state.allExams = action.payload
+         console.log(state.allMarks)
+    },
+    [getAllMarks.rejected]: (state, action) => {
       state.loading = false;
     },
   
