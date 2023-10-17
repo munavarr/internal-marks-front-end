@@ -22,6 +22,7 @@ export const Login = createAsyncThunk(
         navigate("/Addmembers");
       } else {
         localStorage.setItem("username", res.data.username);
+        localStorage.setItem("subject", res.data.subject);
         navigate("/Teacher");
       }
       localStorage.setItem("id", res.data.pk);

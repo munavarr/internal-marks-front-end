@@ -19,6 +19,7 @@ import { addMarks, getAllExams, getAllMarks, getAllStudentsList } from '../../fe
 const Teacher = () => {
 
  const username = localStorage.getItem("username");
+ const teachersub = localStorage.getItem("subject");
 
 const [exam,setexam] = useState()
 console.log(exam)
@@ -33,13 +34,14 @@ useEffect(() => {
   dispatch(getAllStudentsList());
 }, [ dispatch ]);
 
-const { AllExams,AllStudents } = useSelector(
+const { AllExams,AllStudents,allMarks } = useSelector(
   (state) => ({
     AllExams: state.admin.allExams,
-    AllStudents: state.admin.AllStudents
+    AllStudents: state.admin.AllStudents,
+    allMarks: state.admin.allMarks
   })
 );
-
+console.log(allMarks)
 
 // const thedatas = AllStudents.map((trt) => ({
 //   teacherid: "111",
@@ -62,6 +64,16 @@ const { AllExams,AllStudents } = useSelector(
 //   newMarks[index] = parseFloat(value);
 //   setmark(newMarks);
 // };
+const [co1,setco1] = useState("");
+const [co2,setco2] = useState();
+const [co3,setco3] = useState();
+const [co4,setco4] = useState();
+const [co5,setco5] = useState();
+const [co6,setco6] = useState();
+const [co7,setco7] = useState();
+const [co8,setco8] = useState();
+const [co9,setco9] = useState();
+const [co10,setco10] = useState();
 
 const [marks, setMarks] = useState([]);
 
@@ -74,12 +86,12 @@ const handleMarkChange = (value, studentIndex, markIndex) => {
     updatedMarks[studentIndex] = [];
   }
 
-  // updatedMarks[studentIndex][markIndex] = parseFloat(value);
-  // setMarks(updatedMarks);
+  updatedMarks[studentIndex][markIndex] = parseFloat(value);
+  setMarks(updatedMarks);
 
    // Set the value to 0 if it's empty or not a number.
-   updatedMarks[studentIndex][markIndex] = value.trim() === '' || isNaN(parseFloat(value)) ? 0 : parseFloat(value);
-   setMarks(updatedMarks);
+  //  updatedMarks[studentIndex][markIndex] = value.trim() === '' || isNaN(parseFloat(value)) ? 0 : parseFloat(value);
+  //  setMarks(updatedMarks);
   
 };
 
@@ -117,29 +129,29 @@ const thedata = AllStudents.map((trt, index) => {
     teacher: teacherid,
     exam_name:exam,
     student: trt.id,
-    question_one: studentMarks ? studentMarks[0] :  0,
-    question_one_co:"kk",
-    question_two: studentMarks ? studentMarks[1] : 0,
-    question_two_co : "q",
-    question_three: studentMarks ? studentMarks[2] : 0,
-    question_three_co :"kk",
-    question_four: studentMarks ? studentMarks[3] : 0,
-    question_four_co :"kk",
-    question_five :studentMarks ? studentMarks[4] : 0,
-    question_five_co :"kk",
-    question_six : studentMarks ? studentMarks[5] : 0,
-    question_six_co :"kk",
-    question_seven : studentMarks ? studentMarks[6] : 0,
-    question_seven_co :"kk",
-    question_eight : studentMarks ? studentMarks[7] : 0,
-    question_eight_co :"kk",
-    question_nine : studentMarks ? studentMarks[8] : 0,
-    question_nine_co :"kk",
-    question_ten : studentMarks ? studentMarks[9] : 0,
-    question_ten_co :"kk",
+    question_1: studentMarks && studentMarks[0] ,
+    question_one_co:co1,
+    question_2: studentMarks && studentMarks[1] ,
+    question_two_co : co2,
+    question_3: studentMarks && studentMarks[2] ,
+    question_three_co :co3,
+    question_4: studentMarks && studentMarks[3] ,
+    question_four_co :co4,
+    question_5 :studentMarks && studentMarks[4] ,
+    question_five_co :co5,
+    question_6 : studentMarks && studentMarks[5] ,
+    question_six_co :co6,
+    question_7 : studentMarks && studentMarks[6] ,
+    question_seven_co :co7,
+    question_8 : studentMarks && studentMarks[7] ,
+    question_eight_co :co8,
+    question_9 : studentMarks && studentMarks[8] ,
+    question_nine_co :co9,
+    question_10 : studentMarks && studentMarks[9] ,
+    question_ten_co :co10,
   };
 });
-
+console.log(thedata)
 for (let i = 0; i < thedata.length; i++) {
   console.log(thedata[i]);
 }
@@ -163,67 +175,24 @@ const addmark = () => {
   console.table(thedata)
 }
 
-const maindata = [
-  {
-    id: 3,
-      teacher: 31,
-      exam_name: 1,
-      student: 17,
-      student_name: "rotsy",
-      question_1: 2,
-      question_one_co: "kk",
-      question_2: 0,
-      question_two_co: "q",
-      question_3: 0,
-      question_three_co: "kk",
-      question_4: 0,
-      question_four_co: "kk",
-      question_5: 0,
-      question_five_co: "kk",
-      question_6: 0,
-      question_six_co: "kk",
-      question_7: 0,
-      question_seven_co: "kk",
-      question_8: 0,
-      question_eight_co: "kk",
-      question_9: 0,
-      question_nine_co: "kk",
-      question_10: 0,
-      question_ten_co: "kk"
-  },
-  {
-      id: 4,
-      teacher: 31,
-      exam_name: 1,
-      student: 18,
-      student_name: "erron",
-      question_1: 3,
-      question_one_co: "kk",
-      question_2: 0,
-      question_two_co: "q",
-      question_3: 0,
-      question_three_co: "kk",
-      question_4: 0,
-      question_four_co: "kk",
-      question_5: 0,
-      question_five_co: "kk",
-      question_6: 5,
-      question_six_co: "kk",
-      question_7: 0,
-      question_seven_co: "kk",
-      question_8: 0,
-      question_eight_co: "kk",
-      question_9: 0,
-      question_nine_co: "kk",
-      question_10: 0,
-      question_ten_co: "kk"
-  },]
+
 
   const sendSubjectid = (e)=>{
     console.log(e.target.value)
     dispatch(getAllMarks(e.target.value));
+    console.table(allMarks[0])
   }
   
+  // if (allMarks.length > 0) {
+  //   const questionOneCo = allMarks[0].question_one_co
+  //   console.log(questionOneCo); // Do something with questionOneCo
+  // } else {
+  //   console.log("thedata is empty or undefined");
+  // }
+
+  
+
+
   return (
     <div className="addTeacher">
       <div className="navigation">
@@ -236,7 +205,7 @@ const maindata = [
       <div className="nextbody">
       <div className='avatarflex'>  <img className="avatar1" src={avatar1} /> </div>
         <p className='teachername1'>{username}</p>
-        <p className='teachersubject1'>Computer Architecture</p>
+        <p className='teachersubject1'>{teachersub}</p>
        { !AllStudents[0] ?  <p className='studentsaddedtext1'>No students added yet!</p>  :
 
          <div className='dropdownbox'>
@@ -270,32 +239,193 @@ const maindata = [
         <td colspan="10"><p className='tablefields'>Question number</p></td>
     </tr>
     <tr>
+        <td >1</td>
+        <td >2</td>
+        <td >3</td>
+        <td >4</td>
         <td >5</td>
-        <td >5</td>
-        <td >5</td>
-        <td >5</td>
-        <td >5</td>
-        <td >5</td>
-        <td >5</td>
-        <td >5</td>
-        <td >5</td>
-        <td >5</td>
+        <td >6</td>
+        <td >7</td>
+        <td >8</td>
+        <td >9</td>
+        <td >10</td>
         
     </tr>
     <tr>
         <td colspan="10"><p className='tablefields'>CO Value</p></td>
     </tr>
     <tr>
-        <td>7</td>
-        <td>8</td>
-        <td>9</td>
-        <td className='inputs_container'><input type="number"  className='inputs'/></td>
-        <td>11</td>
-        <td>12</td>
-        <td>13</td>
-        <td>14</td>
-        <td>15</td>
-        <td>16</td>
+        <td  className='inputs_container'>
+        <FormControl style={{ 
+         margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[0].question_one_co : "select CO"}</InputLabel>
+      <Select
+        labelId="dropdown-label"
+        id="dropdown"
+        value={co1}
+        onChange={(e) => setco1(e.target.value)}
+      >
+        <MenuItem value="co1" >CO1</MenuItem>
+        <MenuItem value="co2" >CO2</MenuItem>
+        <MenuItem value="co3" >CO3</MenuItem>
+        <MenuItem value="co4" >CO4</MenuItem>
+        </Select>
+    </FormControl>
+        </td>
+        <td  className='inputs_container'>
+        <FormControl style={{ 
+         margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[1].question_one_co : "select CO"}</InputLabel>
+      <Select
+        labelId="dropdown-label"
+        id="dropdown"
+        value={co2}
+        onChange={(e) => setco2(e.target.value)}
+      >
+        <MenuItem value="co1" >CO1</MenuItem>
+        <MenuItem value="co2" >CO2</MenuItem>
+        <MenuItem value="co3" >CO3</MenuItem>
+        <MenuItem value="co4" >CO4</MenuItem>
+        </Select>
+    </FormControl>
+        </td>
+        <td  className='inputs_container'>
+        <FormControl style={{ 
+         margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[2].question_one_co : "select CO"}</InputLabel>
+      <Select
+        labelId="dropdown-label"
+        id="dropdown"
+        value={co3}
+        onChange={(e) => setco3(e.target.value)}
+      >
+        <MenuItem value="co1" >CO1</MenuItem>
+        <MenuItem value="co2" >CO2</MenuItem>
+        <MenuItem value="co3" >CO3</MenuItem>
+        <MenuItem value="co4" >CO4</MenuItem>
+        </Select>
+    </FormControl>
+        </td>
+        <td  className='inputs_container'>
+        <FormControl style={{ 
+         margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[3].question_one_co : "select CO"}</InputLabel>
+      <Select
+        labelId="dropdown-label"
+        id="dropdown"
+        value={co4}
+        onChange={(e) => setco4(e.target.value)}
+      >
+        <MenuItem value="co1" >CO1</MenuItem>
+        <MenuItem value="co2" >CO2</MenuItem>
+        <MenuItem value="co3" >CO3</MenuItem>
+        <MenuItem value="co4" >CO4</MenuItem>
+        </Select>
+    </FormControl>
+        </td>
+        <td  className='inputs_container'>
+        <FormControl style={{ 
+         margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[4].question_one_co : "select CO"}</InputLabel>
+      <Select
+        labelId="dropdown-label"
+        id="dropdown"
+        value={co5}
+        onChange={(e) => setco5(e.target.value)}
+      >
+        <MenuItem value="co1" >CO1</MenuItem>
+        <MenuItem value="co2" >CO2</MenuItem>
+        <MenuItem value="co3" >CO3</MenuItem>
+        <MenuItem value="co4" >CO4</MenuItem>
+        </Select>
+    </FormControl>
+        </td>
+        <td  className='inputs_container'>
+        <FormControl style={{ 
+         margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[5].question_one_co : "select CO"}</InputLabel>
+      <Select
+        labelId="dropdown-label"
+        id="dropdown"
+        value={co6}
+        onChange={(e) => setco6(e.target.value)}
+      >
+        <MenuItem value="co1" >CO1</MenuItem>
+        <MenuItem value="co2" >CO2</MenuItem>
+        <MenuItem value="co3" >CO3</MenuItem>
+        <MenuItem value="co4" >CO4</MenuItem>
+        </Select>
+    </FormControl>
+        </td>
+        <td  className='inputs_container'>
+        <FormControl style={{ 
+         margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[6].question_one_co : "select CO"}</InputLabel>
+      <Select
+        labelId="dropdown-label"
+        id="dropdown"
+        value={co7}
+        onChange={(e) => setco7(e.target.value)}
+      >
+       <MenuItem value="co1" >CO1</MenuItem>
+        <MenuItem value="co2" >CO2</MenuItem>
+        <MenuItem value="co3" >CO3</MenuItem>
+        <MenuItem value="co4" >CO4</MenuItem>
+        </Select>
+    </FormControl>
+        </td>
+        <td  className='inputs_container'>
+        <FormControl style={{ 
+         margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[7].question_one_co : "select CO"}</InputLabel>
+      <Select
+        labelId="dropdown-label"
+        id="dropdown"
+        value={co8}
+        onChange={(e) => setco8(e.target.value)}
+      >
+        <MenuItem value="co1" >CO1</MenuItem>
+        <MenuItem value="co2" >CO2</MenuItem>
+        <MenuItem value="co3" >CO3</MenuItem>
+        <MenuItem value="co4" >CO4</MenuItem>
+        </Select>
+    </FormControl>
+        </td>
+        <td  className='inputs_container'>
+        <FormControl style={{ 
+         margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[8].question_one_co : "select CO"}</InputLabel>
+      <Select
+        labelId="dropdown-label"
+        id="dropdown"
+        value={co9}
+        onChange={(e) => setco9(e.target.value)}
+      >
+       <MenuItem value="co1" >CO1</MenuItem>
+        <MenuItem value="co2" >CO2</MenuItem>
+        <MenuItem value="co3" >CO3</MenuItem>
+        <MenuItem value="co4" >CO4</MenuItem>
+        </Select>
+    </FormControl>
+        </td>
+        <td  className='inputs_container'>
+        <FormControl style={{ 
+         margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[9].question_one_co : "select CO"}</InputLabel>
+      <Select
+        labelId="dropdown-label"
+        id="dropdown"
+        value={co10}
+        onChange={(e) => setco10(e.target.value)}
+      >
+        <MenuItem value="co1" >CO1</MenuItem>
+        <MenuItem value="co2" >CO2</MenuItem>
+        <MenuItem value="co3" >CO3</MenuItem>
+        <MenuItem value="co4" >CO4</MenuItem>
+        </Select>
+    </FormControl>
+        </td> 
+      
     </tr>
   
 
@@ -342,7 +472,7 @@ AllStudents.map((student, studentIndex) =>
     <td>{student.name}</td>
     {Array.from({ length: 10 }, (_, markIndex) => {
       const questionKey = `question_${markIndex + 1}`;
-      const placeholderValue = maindata[studentIndex]?.[questionKey] ?? "";
+      const placeholderValue = allMarks[studentIndex]?.[questionKey] ?? "";
       return (
         <td className='inputs_container' key={markIndex}>
           <input
@@ -356,11 +486,6 @@ AllStudents.map((student, studentIndex) =>
     })}
   </tr>
 )
-
-
-
-
-
     } 
 </table>
 

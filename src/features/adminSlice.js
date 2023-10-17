@@ -28,7 +28,9 @@ export const addSubject = createAsyncThunk("addSubject", async (subjectdata) => 
 });
 
 export const addMarks = createAsyncThunk("addMarks", async (thedata) => {
+  console.table(thedata)
   const res = await AxiosApi.post("/store/mark/", thedata);
+  console.table(res.data)
   return await res.data;
 });
 
@@ -54,7 +56,9 @@ export const getAllStudentsList = createAsyncThunk("getAllStudentsList", async (
 });
 
 export const getAllMarks = createAsyncThunk("getAllMarks", async (examid) => {
+  console.log(examid)
   const res = await AxiosApi.get(`/store/mark/?exam_name=${examid}`);
+  console.table(res.data)
   return await res.data;
 });
 
@@ -163,7 +167,7 @@ const adminSlice = createSlice({
       state.loading = true;
     },
     [getAllMarks.fulfilled]: (state, action) => {
-         state.allExams = action.payload
+         state.allMarks = action.payload
          console.log(state.allMarks)
     },
     [getAllMarks.rejected]: (state, action) => {
