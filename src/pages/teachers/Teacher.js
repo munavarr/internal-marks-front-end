@@ -258,7 +258,7 @@ const addmark = () => {
         <td  className='inputs_container'>
         <FormControl style={{ 
          margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
-      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[0].question_one_co : "select CO"}</InputLabel>
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 && allMarks[0].question_one_co ? allMarks[0].question_one_co  : "select CO"}</InputLabel>
       <Select
         labelId="dropdown-label"
         id="dropdown"
@@ -275,7 +275,7 @@ const addmark = () => {
         <td  className='inputs_container'>
         <FormControl style={{ 
          margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
-      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[0].question_two_co : "select CO"}</InputLabel>
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 && allMarks[0].question_two_co ? allMarks[0].question_two_co  : "select CO"}</InputLabel>
       <Select
         labelId="dropdown-label"
         id="dropdown"
@@ -292,7 +292,7 @@ const addmark = () => {
         <td  className='inputs_container'>
         <FormControl style={{ 
          margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
-      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[0].question_three_co : "select CO"}</InputLabel>
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 && allMarks[0].question_three_co ? allMarks[0].question_three_co  : "select CO"}</InputLabel>
       <Select
         labelId="dropdown-label"
         id="dropdown"
@@ -309,7 +309,7 @@ const addmark = () => {
         <td  className='inputs_container'>
         <FormControl style={{ 
          margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
-      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[0].question_four_co : "select CO"}</InputLabel>
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 && allMarks[0].question_four_co ? allMarks[0].question_four_co  : "select CO"}</InputLabel>
       <Select
         labelId="dropdown-label"
         id="dropdown"
@@ -326,7 +326,7 @@ const addmark = () => {
         <td  className='inputs_container'>
         <FormControl style={{ 
          margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
-      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[0].question_five_co : "select CO"}</InputLabel>
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 && allMarks[0].question_five_co ? allMarks[0].question_five_co  : "select CO"}</InputLabel>
       <Select
         labelId="dropdown-label"
         id="dropdown"
@@ -343,7 +343,7 @@ const addmark = () => {
         <td  className='inputs_container'>
         <FormControl style={{ 
          margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
-      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[0].question_six_co : "select CO"}</InputLabel>
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 && allMarks[0].question_six_co ? allMarks[0].question_six_co  : "select CO"}</InputLabel>
       <Select
         labelId="dropdown-label"
         id="dropdown"
@@ -360,7 +360,7 @@ const addmark = () => {
         <td  className='inputs_container'>
         <FormControl style={{ 
          margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
-      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[0].question_seven_co : "select CO"}</InputLabel>
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 && allMarks[0].question_seven_co ? allMarks[0].question_seven_co  : "select CO"}</InputLabel>
       <Select
         labelId="dropdown-label"
         id="dropdown"
@@ -377,7 +377,7 @@ const addmark = () => {
         <td  className='inputs_container'>
         <FormControl style={{ 
          margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
-      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[0].question_eight_co : "select CO"}</InputLabel>
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 && allMarks[0].question_eight_co ? allMarks[0].question_eight_co  : "select CO"}</InputLabel>
       <Select
         labelId="dropdown-label"
         id="dropdown"
@@ -394,7 +394,7 @@ const addmark = () => {
         <td  className='inputs_container'>
         <FormControl style={{ 
          margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
-      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[0].question_nine_co : "select CO"}</InputLabel>
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 && allMarks[0].question_nine_co ? allMarks[0].question_nine_co  : "select CO"}</InputLabel>
       <Select
         labelId="dropdown-label"
         id="dropdown"
@@ -411,7 +411,7 @@ const addmark = () => {
         <td  className='inputs_container'>
         <FormControl style={{ 
          margin:"0px",padding: "0px", width: "100%",height: "100%",whiteSpace: "nowrap",border: "none",textAlign: "center",fontSize: "20px",borderRadius: '4px 4px 0px 0px' }} >
-      <InputLabel id="dropdown-label" >{allMarks.length > 0 ? allMarks[0].question_ten_co : "select CO"}</InputLabel>
+      <InputLabel id="dropdown-label" >{allMarks.length > 0 && allMarks[0].question_ten_co ? allMarks[0].question_ten_co  : "select CO"}</InputLabel>
       <Select
         labelId="dropdown-label"
         id="dropdown"
