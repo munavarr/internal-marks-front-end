@@ -20,7 +20,7 @@ const StyledModal = styled(Modal)`
 const Addmembers = () => {
 
 // const thedata = [{rolno : 1,regno:"ddd",name :'ssrr'},{rolno : 2,regno:"ee",name :'ssrr'},{rolno : 3,regno:"ttt",name :'ssrr'}]
-
+const aqer = "a"
 const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
